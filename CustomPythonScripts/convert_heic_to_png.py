@@ -17,12 +17,14 @@ def convert_heic_to_png(input_folder_path, output_folder_path):
     for filename in os.listdir(input_folder_path):
         if filename.lower().endswith(".heic"):
             input_file_path = os.path.join(input_folder_path, filename)
-            output_file_path = os.path.join(output_folder_path, os.path.splitext(filename)[0] + ".png")
-            
+            output_file_path = os.path.join(
+                output_folder_path, f"{os.path.splitext(filename)[0]}.png"
+            )
+
             try:
                 # Constructing the ImageMagick convert command
                 command = ["magick", input_file_path, output_file_path]
-                
+
                 # Executing the command
                 subprocess.run(command, check=True)
                 print(f"Conversion successful: {input_file_path} to {output_file_path}")
